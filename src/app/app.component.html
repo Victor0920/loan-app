@@ -1,3 +1,20 @@
-<div>top-menu</div>
+<div class="app">
+    <div class="app-content">
+        <header class="steps-selector-row">
+            <button
+                *ngFor="let step of loanProcessSteps; let i = index"
+                class="step-selector text-basic"
+                [ngClass]="{ selected: currentStep.path === step.path }"
+                (click)="changeCurrentStep(step)"
+            >
+                {{ step.name }}
+            </button>
+        </header>
 
-<router-outlet></router-outlet>
+        <div class="route-info">
+            <p class="text-basic">SDK / {{ currentStep.name }}</p>
+        </div>
+
+        <router-outlet></router-outlet>
+    </div>
+</div>

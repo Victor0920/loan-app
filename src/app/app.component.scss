@@ -1,0 +1,46 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+
+    &-content {
+        width: 600px;
+        padding-bottom: 50px;
+    }
+
+    header.steps-selector-row {
+        display: flex;
+        margin-bottom: 1rem;
+
+        .step-selector {
+            flex-grow: 1;
+            padding: 0.7rem;
+            width: max-content;
+            background: var(--backgroundColor);
+            border-radius: 5px 5px 0 0;
+
+            &.selected {
+                border: 1px solid var(--borderColor);
+                border-bottom: none;
+            }
+
+            &:not(.selected) {
+                cursor: pointer;
+                border: none;
+                border-bottom: 1px solid var(--borderColor);
+                color: #2490bf;
+                text-decoration: underline;
+
+                &:hover {
+                    background: var(--hoverColor);
+                }
+            }
+        }
+    }
+
+    .route-info {
+        margin-bottom: 3rem;
+    }
+}

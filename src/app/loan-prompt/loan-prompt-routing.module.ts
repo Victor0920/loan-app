@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { LoanPromptComponent } from './loan-prompt.component';
 
-import { WelcomeFormComponent } from './forms/welcome-form/welcome-form.component';
+import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
     {
@@ -12,45 +12,35 @@ const routes: Routes = [
         children: [
             {
                 path: 'personal-information',
-                // canActivate: [AuthGuard, RoleGuard],
-                // data: { allowedPermissions: ['home.view'] },
-                component: WelcomeFormComponent,
+                data: { formTitle: 'personalInformation' },
+                component: FormComponent,
             },
             {
                 path: 'adress-details',
-                // canActivate: [AuthGuard, RoleGuard],
-                // data: { allowedPermissions: ['home.view'] },
-                component: WelcomeFormComponent,
+                data: { formTitle: 'adressDetails' },
+                component: FormComponent,
             },
             {
                 path: 'income',
-                // canActivate: [AuthGuard, RoleGuard],
-                // data: { allowedPermissions: ['home.view'] },
-                component: WelcomeFormComponent,
+                data: { formTitle: 'income' },
+                component: FormComponent,
             },
             {
                 path: 'verify',
-                // canActivate: [AuthGuard, RoleGuard],
-                // data: { allowedPermissions: ['home.view'] },
-                component: WelcomeFormComponent,
+                data: { formTitle: 'verify' },
+                component: FormComponent,
             },
             {
                 path: 'approved',
-                // canActivate: [AuthGuard, RoleGuard],
-                // data: { allowedPermissions: ['home.view'] },
-                component: WelcomeFormComponent,
+                component: FormComponent,
             },
             {
                 path: 'denied',
-                // canActivate: [AuthGuard, RoleGuard],
-                // data: { allowedPermissions: ['home.view'] },
-                component: WelcomeFormComponent,
+                component: FormComponent,
             },
             {
                 path: '',
                 redirectTo: 'personal-information',
-                // canActivate: [AuthGuard, RoleGuard],
-                // data: { allowedPermissions: ['home.view'] },
                 pathMatch: 'full',
             },
             {

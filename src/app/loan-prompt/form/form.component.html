@@ -1,0 +1,98 @@
+<div class="introduction">
+    <h1>{{ fullForm[formTitle]?.title }}</h1>
+    <p>{{ fullForm[formTitle]?.description }}</p>
+</div>
+<div *ngFor="let section of fullForm[formTitle]?.sections; let sectionIndex = index" class="form">
+    <h2 *ngIf="section.title" class="section-title">{{ section.title }}</h2>
+
+    <div *ngFor="let field of section.fields; let fieldIndex = index" class="form-column">
+        <label *ngIf="field.label" for="{{ field.id }}" [ngClass]="{ warning: field.warning }"
+            >{{ field.label }} <span *ngIf="field.required" class="asterisk">*</span></label
+        >
+        <div *ngIf="field.type === 'input' && field.is_currency" class="field-content currency">
+            <div class="currency-symbol-section">{{ field.currency }}</div>
+
+            <input
+                class="input currency-indicator"
+                [type]="field.inputType"
+                [ngModel]="fullForm[formTitle].sections[sectionIndex].fields[fieldIndex].value"
+                (blur)="validateField(fieldIndex, sectionIndex, field, $event)"
+                [ngClass]="[field.success ? 'success' : field.warning ? 'warning' : '']"
+            />
+
+            <span *ngIf="field.success" class="material-symbols-outlined success"> check </span>
+            <span *ngIf="field.warning" class="material-symbols-outlined warning"> exclamation </span>
+        </div>
+
+        <div *ngIf="field.type === 'input' && !field.is_currency" class="field-content">
+            <input
+                class="input"
+                [type]="field.inputType"
+                [ngModel]="fullForm[formTitle].sections[sectionIndex].fields[fieldIndex].value"
+                (blur)="validateField(fieldIndex, sectionIndex, field, $event)"
+                [ngClass]="[field.success ? 'success' : field.warning ? 'warning' : '']"
+            />
+
+            <span *ngIf="field.success" class="material-symbols-outlined success"> check </span>
+            <span *ngIf="field.warning" class="material-symbols-outlined warning"> exclamation </span>
+        </div>
+
+        <div *ngIf="field.type === 'buttons'" class="field-content">
+            <div class="button-group">
+                <div *ngFor="let option of field.options" class="button-element total-columns-{{ field.columns }}">
+                    <button
+                        (click)="updateForm(fieldIndex, sectionIndex, option.value)"
+                        [attr.selected]="
+                            fullForm[formTitle].sections[sectionIndex].fields[fieldIndex].value === option.value
+                        "
+                    >
+                        {{ option.name }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="field.type === 'select'" class="field-content">
+            <select class="select" #select (change)="updateForm(fieldIndex, sectionIndex, select.value)">
+                <option
+                    *ngFor="let option of field.options"
+                    [selected]="fullForm[formTitle].sections[sectionIndex].fields[fieldIndex].value"
+                >
+                    {{ option.name }}
+                </option>
+            </select>
+        </div>
+
+        <div *ngIf="field.type === 'checkbox'" class="checkbox-field-content">
+            <input
+                type="checkbox"
+                (change)="
+                    updateForm(
+                        fieldIndex,
+                        sectionIndex,
+                        !fullForm[formTitle].sections[sectionIndex].fields[fieldIndex].value
+                    )
+                "
+                [checked]="fullForm[formTitle].sections[sectionIndex].fields[fieldIndex].value"
+            />
+            <p class="checkbox-description" [innerHTML]="field.description"></p>
+        </div>
+
+        <span *ngIf="field.warning" class="warning-text">{{ field.warningText }}</span>
+    </div>
+</div>
+
+<section class="continue-button-container">
+    <button class="continue-button" (click)="logMyProgress()">CONTINUE</button>
+</section>
+
+<section class="footer">
+    <p class="text">
+        Snap Finance Ltd is autorized and regulated by theFinacial Conduct Authority with reference number 741813. The
+        register is available at
+        <a style="color: #2490bf" href="https://register.fca.org.uk/s/" _blank>https://register.fca.org.uk/s/</a>. Snap
+        Finance Ltd is a company registered in England and Wales. Company number 8080202. Registered adress: Snap
+        Finance Ltd, 1 Vicent Avenue, Crownhill, MiltonKeynes, MK8 0AB.
+    </p>
+    <p class="text">© {{ currentYear }} Copyright Snap! Finance and Pay Weekly Store. All rights reserved.</p>
+</section>

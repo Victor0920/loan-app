@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0');
+
+.loan-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .loan-prompt {
+        border: 1px solid var(--borderColor);
+        border-radius: 1.5rem;
+        width: 400px;
+
+        &-header {
+            margin-bottom: 1.8rem;
+            padding: 1rem 1rem 0;
+
+            .top-row {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 1rem;
+
+                .shopping-basket {
+                    position: relative;
+                    width: min-content;
+
+                    &-badge {
+                        position: absolute;
+                        top: -9px;
+                        right: -9px;
+                        color: #fff;
+                        background: var(--primary);
+                        height: 20px;
+                        width: 20px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 0.8rem;
+                    }
+                }
+
+                .logo {
+                    width: 5rem;
+                }
+            }
+
+            .text-row {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 1rem;
+
+                .text-basic-header {
+                    color: #000;
+                    font-weight: 300;
+                    font-size: 1.1rem;
+                    margin: 0;
+                }
+            }
+
+            .steps-row {
+                display: flex;
+                justify-content: space-between;
+
+                .step-index {
+                    width: 35px;
+                    height: 35px;
+                    background-color: var(--backgroundColor);
+                    font-size: 1.2rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    border: 1px solid var(--borderColor);
+                    font-weight: 300;
+
+                    &:not(.disabled) {
+                        cursor: pointer;
+                    }
+
+                    &.selected {
+                        color: #fff;
+                        background: var(--success);
+                    }
+                }
+            }
+        }
+
+        ::ng-deep {
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            p {
+                font-weight: 300;
+                text-align: justify;
+                font-size: 1.04rem;
+            }
+        }
+    }
+}
