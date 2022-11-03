@@ -17,12 +17,10 @@ export class AppComponent {
     constructor(private router: Router, private location: Location, private store: Store) {
         const currentStepPath = this.location.path();
 
-        // Add localstorage
         this.currentStep = loanProcessSteps.find((step: Step) => step.path === currentStepPath) || loanProcessSteps[0];
         this.loanProcessSteps = loanProcessSteps;
 
         this.store.setCurrentStep(this.currentStep);
-        // this.store.setFormState(this.currentStep); // Get from localstorage
     }
 
     changeCurrentStep(step: Step) {
